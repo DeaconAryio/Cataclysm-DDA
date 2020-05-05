@@ -358,7 +358,7 @@ std::string requirement_data::print_all_objs( const std::string &header,
         []( const T & t ) {
             return t.to_string();
         } );
-        std::sort( alternatives.begin(), alternatives.end(), localized_compare );
+        std::sort( alternatives.begin(), alternatives.end() );
         buffer += join( alternatives, _( " or " ) );
     }
     if( buffer.empty() ) {
@@ -485,7 +485,7 @@ void inline_requirements( std::vector< std::vector<T> > &list, Getter getter )
             iter = vec.erase( iter );
 
             const auto &to_inline = getter( multiplied );
-            vec.insert( iter, to_inline.front().begin(), to_inline.front().end() );
+          //  vec.insert( iter, to_inline.front().begin(), to_inline.front().end() );
         }
     }
 }
@@ -580,7 +580,7 @@ std::vector<std::string> requirement_data::get_folded_list( int width,
             }
             buffer_has.push_back( text + color_tag );
         }
-        std::sort( list_as_string.begin(), list_as_string.end(), localized_compare );
+        std::sort( list_as_string.begin(), list_as_string.end() );
 
         const std::string separator = colorize( _( " OR " ), c_white );
         const std::string unfolded = join( list_as_string, separator );
